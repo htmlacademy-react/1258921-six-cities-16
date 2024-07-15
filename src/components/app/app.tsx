@@ -22,7 +22,6 @@ function App({ cardCount }: AppScreenProps) {
       <BrowserRouter>
         <Routes>
           <Route
-            // index  //why index doesn't work?
             path={AppRoute.Main}
             element={<Main cardCount={cardCount} />}
           />
@@ -44,7 +43,7 @@ function App({ cardCount }: AppScreenProps) {
           />
           <Route
             path={AppRoute.Offer}
-            element={<Offer />}//             //primer dobavleniya param
+            element={<Offer />}
           />
           <Route
             path={AppRoute.OfferNotLogged}
