@@ -1,24 +1,23 @@
-import PlaceCard from '../../components/place-card/place-card';
+import OffersList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
+import { Offers } from '../../components/types/offers';
+import { Link } from 'react-router-dom';
 
+type cardCount = number;
 
 type MainProps = {
-  cardCount: number;
+  cardCount: cardCount;
+  offers: Offers;
 }
 
-function Main({ cardCount }: MainProps): JSX.Element {
-
-  const cardsArray: JSX.Element[] = [];
-  for (let i = 0; i < cardCount; i++) {
-    cardsArray.push(<PlaceCard />);
-  }
-
+function Main({ cardCount, offers }: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
         <title>6 cities</title>
       </Helmet>
+
       <Header />
 
       <main className="page__main page__main--index">
@@ -27,34 +26,34 @@ function Main({ cardCount }: MainProps): JSX.Element {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Paris</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Cologne</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Brussels</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
+                <Link className="locations__item-link tabs__item tabs__item--active">
                   <span>Amsterdam</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Hamburg</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Dusseldorf</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </section>
@@ -69,7 +68,7 @@ function Main({ cardCount }: MainProps): JSX.Element {
                 <span className="places__sorting-type" tabIndex={0}>
                   Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
+                    <use xlinkto="#icon-arrow-select"></use>
                   </svg>
                 </span>
                 <ul className="places__options places__options--custom places__options--opened">
@@ -81,7 +80,7 @@ function Main({ cardCount }: MainProps): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
-                {cardsArray}
+                <OffersList offers={offers} cardCount={cardCount} />
 
               </div>
             </section>

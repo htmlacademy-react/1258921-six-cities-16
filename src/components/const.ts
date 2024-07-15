@@ -16,5 +16,10 @@ export const AppRoute = {
 export const AuthorizationStatus = {
   Auth: 'AUTH',
   NoAuth: 'NO_AUTH',
-  Unknown: 'UNKNOWN'
+  Unknown: 'UNKNOWN',
+} as const;
+
+export const PlaceCardsClassNames = {
+  main: 'cities__card',
+  favorites: 'favorites__card',
 } as const;

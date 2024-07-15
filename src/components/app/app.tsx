@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../const';
 import { HelmetProvider } from 'react-helmet-async';
+import { Offers } from '../types/offers';
 import Main from '../../pages/main/main';
 import MainEmpty from '../../pages/main-empty/main-empty';
 import Favorites from '../../pages/favorites/favorites';
@@ -10,20 +11,23 @@ import Offer from '../../pages/offer/offer';
 import OfferNotLogged from '../../pages/offer-not-logged/offer-not-logged';
 import PageNotFound from '../../pages/page-not-found-404/page-not-found-404';
 import PrivateRoute from '../private-route/private-route';
+import { PlaceCardsClassNames } from '../const';
 
+type cardCount = number;
 
 type AppScreenProps = {
-  cardCount: number;
+  cardCount: cardCount;
+  offers: Offers;
 }
 
-function App({ cardCount }: AppScreenProps) {
+function App({ cardCount, offers }: AppScreenProps) {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<Main cardCount={cardCount} />}
+            element={<Main cardCount={cardCount} offers={offers} />}
           />
           <Route
             path={AppRoute.MainEmpty}
@@ -32,8 +36,11 @@ function App({ cardCount }: AppScreenProps) {
           <Route
             path={AppRoute.Favorites}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-                <Favorites />
+              <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+                <Favorites
+                  // offers={offers}
+                  PlaceCardsClassNames={PlaceCardsClassNames.favorites}
+                />
               </PrivateRoute>
             }
           />
