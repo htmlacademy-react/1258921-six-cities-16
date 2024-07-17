@@ -1,5 +1,7 @@
+import { AppRoute } from '../../components/const';
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 
 
 function FavoritesEmpty(): JSX.Element {
@@ -23,9 +25,9 @@ function FavoritesEmpty(): JSX.Element {
         </div>
       </main>
       <footer className="footer">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.Main}>
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
+        </Link>
       </footer>
     </div>
   );
