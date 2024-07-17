@@ -13,11 +13,13 @@ import PageNotFound from '../../pages/page-not-found-404/page-not-found-404';
 import PrivateRoute from '../private-route/private-route';
 import { PlaceCardsClassNames } from '../const';
 
-type cardCount = number;
+type CardCount = number;
+// type PlaceCardsClassNames = string;
 
 type AppScreenProps = {
-  cardCount: cardCount;
+  cardCount: CardCount;
   offers: Offers;
+  // placeCardsClassNames: PlaceCardsClassNames;
 }
 
 function App({ cardCount, offers }: AppScreenProps) {
@@ -27,7 +29,13 @@ function App({ cardCount, offers }: AppScreenProps) {
         <Routes>
           <Route
             path={AppRoute.Main}
-            element={<Main cardCount={cardCount} offers={offers} />}
+            element={
+              <Main
+                cardCount={cardCount}
+                offers={offers}
+                placeCardsClassNames={PlaceCardsClassNames.main}
+              />
+            }
           />
           <Route
             path={AppRoute.MainEmpty}
@@ -39,7 +47,10 @@ function App({ cardCount, offers }: AppScreenProps) {
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
                 <Favorites
                   // offers={offers}
-                  PlaceCardsClassNames={PlaceCardsClassNames.favorites}
+                  cardCount={cardCount}
+                  offers={offers}
+                  placeCardsClassNames={PlaceCardsClassNames.favorites}
+                //dublirovanie here
                 />
               </PrivateRoute>
             }
@@ -50,7 +61,14 @@ function App({ cardCount, offers }: AppScreenProps) {
           />
           <Route
             path={AppRoute.Offer}
-            element={<Offer />}
+            element={
+              <Offer
+                onAnswer={(testData) => {
+                  console.log(testData);  //I can't get a data
+                  // throw new Error('Oshibka');
+                }}
+              />
+            }
           />
           <Route
             path={AppRoute.OfferNotLogged}
@@ -70,7 +88,5 @@ function App({ cardCount, offers }: AppScreenProps) {
   );
 }
 
-{/* <Main
-  cardCount={cardCount}
-/> */}
+
 export default App;

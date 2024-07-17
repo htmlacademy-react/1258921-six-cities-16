@@ -1,55 +1,30 @@
 import { Offers } from '../types/offers';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { AppRoute } from '../const';
 
 type PlaceCardsClassNames = string;
 
 type PlaceCardProps = {
   offers: Offers;
-  PlaceCardsClassNames: PlaceCardsClassNames;
+  placeCardsClassNames: PlaceCardsClassNames;
+  onAnswer: (offers: any) => void;
 }
 
-{/* I need to iterate offers here   update: no*/ }
+function PlaceCard({ offers, placeCardsClassNames, onAnswer }: PlaceCardProps): JSX.Element {
 
-
-function PlaceCard({ offers, PlaceCardsClassNames }: PlaceCardProps): JSX.Element {
-  //activeOffer
-  //offers[0].id
   const [count, setActiveOffer] = useState(0); // (Добавьте в состояние компонента активную карточку с предложением)
 
   function countHandler() {
-    // console.log(evt.target.alt);
     setActiveOffer(count + 1);
   }
 
-
-  const [activeCard, setActiveCard] = useState(offers[0].id);
-
-  function activeCardHandler() {
-    setActiveCard(activeCard + '1'); {/* Sdes nichego ne proishodit vrode (sagotovka dlya dalneishego ispolsovaniya) */ }
-  }
-
-  // const [className, setClassName] = useState(' place-card'); //PlaceCardsClassNames
-  // function classNameHandler() {
-  //   setClassName({PlaceCardsClassNames}); //ne rabotaet
-  // }
-
-
-
-  // classList.add //Mojno peredat class s pomoshiy sostoyaniya useState
-  // const cardClass = {PlaceCardsClassNames} + ' place-card' // ne rabotaet
-
-  // };
-  // <button className={className} onClick={() => setClassName("bar")}>Clicking this will change the class name from "foo" to "bar"</button>
   return (
     // <article className="cities__card place-card" onMouseEnter={() => {
-    <article className='cities__card place-card' onMouseEnter={() => {
-      {/* Mne nujno peredat v Main v props Offers list etot class cities__card */ }
+    <article className={`${placeCardsClassNames}  place-card`} onMouseEnter={() => {
       countHandler();
-      activeCardHandler();
-      // classNameHandler();
     }}
-    > {/* Kak peredat dve function v onMouseEnter?*/}
+    >
       <div className="place-card__mark">
         <span>Premium {count}</span>
       </div>
@@ -78,8 +53,15 @@ function PlaceCard({ offers, PlaceCardsClassNames }: PlaceCardProps): JSX.Elemen
           </div>
         </div>
         <h2 className="place-card__name">
-          {/* <Link to="#">{offers[0].title}</Link> Potom ubrat comments */}
-          <Link to="#">{activeCard}</Link>
+          {/* <Link to={AppRoute.Offer}>{offers[0].title}</Link> */}
+          <Link to={AppRoute.Offer} onClick={
+            () => {
+              onAnswer(offers);
+            }
+          }
+          >
+            {offers[0].title}
+          </Link>
         </h2>
         <p className="place-card__type">{offers[0].type}</p>
       </div>

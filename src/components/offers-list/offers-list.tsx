@@ -7,16 +7,18 @@ type PlaceCardsClassNames = string;
 type OffersListProps = {
   cardCount: cardCount;
   offers: Offers;
-  PlaceCardsClassNames: PlaceCardsClassNames;
+  placeCardsClassNames: PlaceCardsClassNames;
 }
 
-function OffersList({ cardCount, offers, PlaceCardsClassNames }: OffersListProps): JSX.Element {
+function OffersList({ cardCount, offers, placeCardsClassNames }: OffersListProps): JSX.Element {
   const cardsArray: JSX.Element[] = [];
   for (let i = 0; i < cardCount; i++) {
-    cardsArray.push(<PlaceCard
-      offers={offers}
-      PlaceCardsClassNames={PlaceCardsClassNames}
-    />); // Why i can't use offers[i] here in props
+    cardsArray.push(
+      <PlaceCard
+        offers={offers}
+        placeCardsClassNames={placeCardsClassNames}
+      />
+    ); // Why i can't use offers[i] here in props
   }
 
   return (

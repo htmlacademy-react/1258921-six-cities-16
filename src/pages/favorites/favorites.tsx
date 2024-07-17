@@ -1,16 +1,20 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 import OffersList from '../../components/offers-list/offers-list';
-// import { Offers } from '../../components/types/offers';
+import { Offers } from '../../components/types/offers';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../components/const';
 
-type ClassForPlaceCard = string;
+type CardCount = number;
+type PlaceCardsClassNames = string;
 
 type FavoritesProps = {
-  PlaceCardsClassNames: ClassForPlaceCard;
-  // offers: Offers;
+  cardCount: CardCount;
+  offers: Offers;
+  placeCardsClassNames: PlaceCardsClassNames;
 }
 
-function Favorites({ PlaceCardsClassNames }: FavoritesProps): JSX.Element {
+function Favorites({ cardCount, offers, placeCardsClassNames }: FavoritesProps): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -26,20 +30,24 @@ function Favorites({ PlaceCardsClassNames }: FavoritesProps): JSX.Element {
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <Link className="locations__item-link" href="#">
                       <span>Amsterdam</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="favorites__places">
                   {/*Mne nujno peredat suda className="favorites__card"*/}
-                  <OffersList PlaceCardsClassNames={PlaceCardsClassNames} />
+                  <OffersList
+                    placeCardsClassNames={placeCardsClassNames}
+                    cardCount={cardCount}
+                    offers={offers}
+                  />
 
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <a href="#">
+                      <Link href="#">
                         <img className="place-card__image" src="img/room-small.jpg" width="150" height="110" alt="Place image" />
-                      </a>
+                      </Link>
                     </div>
                     <div className="favorites__card-info place-card__info">
                       <div className="place-card__price-wrapper">
@@ -61,7 +69,7 @@ function Favorites({ PlaceCardsClassNames }: FavoritesProps): JSX.Element {
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <a href="#">Wood and stone place</a>
+                        <Link href="#">Wood and stone place</Link>
                       </h2>
                       <p className="place-card__type">Room</p>
                     </div>
@@ -72,17 +80,17 @@ function Favorites({ PlaceCardsClassNames }: FavoritesProps): JSX.Element {
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <a className="locations__item-link" href="#">
+                    <Link className="locations__item-link" href="#">
                       <span>Cologne</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <a href="#">
+                      <Link href="#">
                         <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110" alt="Place image" />
-                      </a>
+                      </Link>
                     </div>
                     <div className="favorites__card-info place-card__info">
                       <div className="place-card__price-wrapper">
@@ -104,7 +112,7 @@ function Favorites({ PlaceCardsClassNames }: FavoritesProps): JSX.Element {
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <a href="#">White castle</a>
+                        <Link href="#">White castle</Link>
                       </h2>
                       <p className="place-card__type">Apartment</p>
                     </div>
@@ -116,9 +124,9 @@ function Favorites({ PlaceCardsClassNames }: FavoritesProps): JSX.Element {
         </div>
       </main>
       <footer className="footer container">
-        <a className="footer__logo-link" href="main.html">
+        <Link className="footer__logo-link" to={AppRoute.Main}>
           <img className="footer__logo" src="img/logo.svg" alt="6 cities logo" width="64" height="33" />
-        </a>
+        </Link>
       </footer>
     </div>
   );

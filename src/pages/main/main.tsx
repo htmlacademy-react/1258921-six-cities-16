@@ -5,13 +5,15 @@ import { Offers } from '../../components/types/offers';
 import { Link } from 'react-router-dom';
 
 type cardCount = number;
+type PlaceCardsClassNames = string;
 
 type MainProps = {
   cardCount: cardCount;
   offers: Offers;
+  placeCardsClassNames: PlaceCardsClassNames;
 }
 
-function Main({ cardCount, offers }: MainProps): JSX.Element {
+function Main({ cardCount, offers, placeCardsClassNames }: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Helmet>
@@ -80,7 +82,11 @@ function Main({ cardCount, offers }: MainProps): JSX.Element {
               </form>
               <div className="cities__places-list places__list tabs__content">
 
-                <OffersList offers={offers} cardCount={cardCount} />
+                <OffersList
+                  offers={offers}
+                  cardCount={cardCount}
+                  placeCardsClassNames={placeCardsClassNames}
+                />
 
               </div>
             </section>
