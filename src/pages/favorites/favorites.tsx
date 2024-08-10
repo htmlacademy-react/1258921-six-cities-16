@@ -1,20 +1,20 @@
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
 import OffersList from '../../components/offers-list/offers-list';
-import { Offers } from '../../components/types/offers';
+import { Offer as OfferTypes } from '../../components/types/offers';
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../components/const';
 
-type CardCount = number;
+// type CardCount = number;
 type PlaceCardsClassNames = string;
 
 type FavoritesProps = {
-  cardCount: CardCount;
-  offers: Offers;
+  // cardCount: CardCount;
+  offers: OfferTypes[];
   placeCardsClassNames: PlaceCardsClassNames;
 }
 
-function Favorites({ cardCount, offers, placeCardsClassNames }: FavoritesProps): JSX.Element {
+function Favorites({ offers, placeCardsClassNames }: FavoritesProps): JSX.Element {
   return (
     <div className="page">
       <Helmet>
@@ -30,22 +30,21 @@ function Favorites({ cardCount, offers, placeCardsClassNames }: FavoritesProps):
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <Link className="locations__item-link" href="#">
+                    <Link className="locations__item-link" to="#">
                       <span>Amsterdam</span>
                     </Link>
                   </div>
                 </div>
                 <div className="favorites__places">
-                  {/*Mne nujno peredat suda className="favorites__card"*/}
                   <OffersList
+                    // cardCount={cardCount}
                     placeCardsClassNames={placeCardsClassNames}
-                    cardCount={cardCount}
                     offers={offers}
                   />
 
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <Link href="#">
+                      <Link to="#">
                         <img className="place-card__image" src="img/room-small.jpg" width="150" height="110" alt="Place image" />
                       </Link>
                     </div>
@@ -69,7 +68,7 @@ function Favorites({ cardCount, offers, placeCardsClassNames }: FavoritesProps):
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <Link href="#">Wood and stone place</Link>
+                        <Link to="#">Wood and stone place</Link>
                       </h2>
                       <p className="place-card__type">Room</p>
                     </div>
@@ -80,7 +79,7 @@ function Favorites({ cardCount, offers, placeCardsClassNames }: FavoritesProps):
               <li className="favorites__locations-items">
                 <div className="favorites__locations locations locations--current">
                   <div className="locations__item">
-                    <Link className="locations__item-link" href="#">
+                    <Link className="locations__item-link" to="#">
                       <span>Cologne</span>
                     </Link>
                   </div>
@@ -88,7 +87,7 @@ function Favorites({ cardCount, offers, placeCardsClassNames }: FavoritesProps):
                 <div className="favorites__places">
                   <article className="favorites__card place-card">
                     <div className="favorites__image-wrapper place-card__image-wrapper">
-                      <Link href="#">
+                      <Link to="#">
                         <img className="place-card__image" src="img/apartment-small-04.jpg" width="150" height="110" alt="Place image" />
                       </Link>
                     </div>
@@ -112,7 +111,7 @@ function Favorites({ cardCount, offers, placeCardsClassNames }: FavoritesProps):
                         </div>
                       </div>
                       <h2 className="place-card__name">
-                        <Link href="#">White castle</Link>
+                        <Link to="#">White castle</Link>
                       </h2>
                       <p className="place-card__type">Apartment</p>
                     </div>

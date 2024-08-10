@@ -1,7 +1,7 @@
 import OffersList from '../../components/offers-list/offers-list';
 import Header from '../../components/header/header';
 import { Helmet } from 'react-helmet-async';
-import { Offers } from '../../components/types/offers';
+import { Offer as OfferTypes } from '../../components/types/offers';
 import { Link } from 'react-router-dom';
 
 type cardCount = number;
@@ -9,7 +9,7 @@ type PlaceCardsClassNames = string;
 
 type MainProps = {
   cardCount: cardCount;
-  offers: Offers;
+  offers: OfferTypes[];
   placeCardsClassNames: PlaceCardsClassNames;
 }
 
@@ -43,7 +43,7 @@ function Main({ cardCount, offers, placeCardsClassNames }: MainProps): JSX.Eleme
                 </Link>
               </li>
               <li className="locations__item">
-                <Link className="locations__item-link tabs__item tabs__item--active">
+                <Link className="locations__item-link tabs__item tabs__item--active" to="#">
                   <span>Amsterdam</span>
                 </Link>
               </li>
@@ -84,7 +84,6 @@ function Main({ cardCount, offers, placeCardsClassNames }: MainProps): JSX.Eleme
 
                 <OffersList
                   offers={offers}
-                  cardCount={cardCount}
                   placeCardsClassNames={placeCardsClassNames}
                 />
 

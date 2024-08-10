@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../const';
 import { HelmetProvider } from 'react-helmet-async';
-import { Offers } from '../types/offers';
+import {Offer as OfferTypes} from '../types/offers';
 import Main from '../../pages/main/main';
 import MainEmpty from '../../pages/main-empty/main-empty';
 import Favorites from '../../pages/favorites/favorites';
@@ -18,7 +18,7 @@ type CardCount = number;
 
 type AppScreenProps = {
   cardCount: CardCount;
-  offers: Offers;
+  offers: OfferTypes[];
   // placeCardsClassNames: PlaceCardsClassNames;
 }
 
@@ -46,11 +46,9 @@ function App({ cardCount, offers }: AppScreenProps) {
             element={
               <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
                 <Favorites
-                  // offers={offers}
-                  cardCount={cardCount}
+                  // cardCount={cardCount}
                   offers={offers}
                   placeCardsClassNames={PlaceCardsClassNames.favorites}
-                //dublirovanie here
                 />
               </PrivateRoute>
             }
@@ -62,12 +60,7 @@ function App({ cardCount, offers }: AppScreenProps) {
           <Route
             path={AppRoute.Offer}
             element={
-              <Offer
-                onAnswer={(testData) => {
-                  console.log(testData);  //I can't get a data
-                  // throw new Error('Oshibka');
-                }}
-              />
+              <Offer/>
             }
           />
           <Route
